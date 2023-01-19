@@ -1,4 +1,4 @@
-import { Form, Input, Select } from 'antd';
+import { Form, Input } from 'antd';
 
 import './Layout.css';
 import Menu from '../Component/Menu/Menu';
@@ -7,8 +7,8 @@ import Menu from '../Component/Menu/Menu';
 
 function MainHeader() {
   return (
-    <div className='main-header component-layout'>
-      <div className='main-header-wrapper component-wrapper'>
+    <div className='main-header'>
+      {/* <div className='main-header-wrapper component-wrapper'> */}
         <a href='./'>
           <img src='./Image/logo.png' alt='' />
         </a>
@@ -27,7 +27,7 @@ function MainHeader() {
           </Form.Item>
         </div>
         <Menu />
-      </div>
+      {/* </div> */}
     </div>
   )
 }
