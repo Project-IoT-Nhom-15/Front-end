@@ -1,0 +1,108 @@
+.main-header .menu-box {
+  position: relative;
+  z-index: 11000;
+}
+
+.main-header .menu-box button {
+  cursor: pointer;
+}
+
+.main-header .menu-layer {
+  width: 0;
+  height: 100vh;
+  position: fixed;
+  z-index: 10000;
+  top: 0;
+  right: 0;
+  background: rgba(161, 164, 163, 0);
+  /* transform: translateX(300px);
+  transition: 1s; */
+}
+
+.main-header .menu-layer.show {
+  width: 100%;
+  transform: translateX(0);
+  background: rgba(161, 164, 163, 0.5);
+  z-index: 10;
+}
+
+.main-header .menu {
+  width: 300px;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: rgb(242 240 231);
+  transform: translateX(300px);
+  transition: 1s;
+}
+
+.main-header .menu-layer.show .menu {
+  transform: translateX(0);
+}
+
+.menu .login-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  width: 100%;
+  padding: 0 15px;
+}
+
+.menu .login-box button {
+  width: 120px;
+  height: 40px;
+  border: 3px solid rgb(3, 118, 184);
+  border-radius: 6px;
+  font-size: 11pt;
+  font-weight: 600;
+}
+
+.menu .login-box .log-in-btn {
+  color: rgb(3, 118, 184);
+  background: rgba(0, 0, 0, 0);
+}
+
+.menu .login-box .log-in-btn:hover {
+  background: rgb(255, 255, 255);
+}
+
+.menu .login-box .sign-up-btn {
+  color: rgb(255, 255, 255);
+  background: rgb(3, 118, 184);
+}
+
+.menu .login-box .sign-up-btn:hover {
+  border-color: rgb(3, 67, 103);
+  background: rgb(3, 67, 103);
+}
+
+
+.menu-item {
+  user-select: none;
+  width: 100%;
+  height: 55px;
+  display: flex;
+  align-items: flex-end;
+  font-size: 13pt;
+  font-weight: 700;
+  padding: 5px 20px;
+  border-bottom: 2px solid rgb(191 181 169);
+}
+
+.sub-menu-item {
+  user-select: none;
+  cursor: pointer;
+  height: 40px;
+  margin: 0 10px;
+  border-bottom: 1.5px solid rgb(191 181 169);
+  padding: 0 0 5px 20px;
+  display: flex;
+  align-items: flex-end;
+  font-size: 11pt;
+}
+
+.sub-menu-item:hover {
+  background: whitesmoke;
+}

@@ -1,0 +1,34 @@
+.white-box-page {
+  display: flex;
+  flex-direction: column;
+  background: whitesmoke;
+  width: calc(100% - 200px);
+  height: max-content;
+  margin: 30px 100px;
+  padding: 30px;
+}
+
+.white-box-page .box-title {
+  color: #666;
+  font-size: 30pt;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.white-box-page .box-text {
+  font-size: 13pt;
+}
+
+.white-box-page .box-input {
+  width: 100%;
+  max-width: 300px;
+  border: 1px solid black;
+  font-size: 13pt;
+  position: relative;
+  z-index: 1000;
+}
+
+.white-box-page .box-button {
+  width: max-content;
+  margin-bottom: 20px;
+}
