@@ -1,6 +1,7 @@
+import AddDevice from '../Pages/AddDevice/AddDevice'
+import DeviceDetail from '../Pages/DeviceDetail/DeviceDetail'
 import Home from '../Pages/Home/Home'
-import SignUp from '../Pages/LoginSignUp/SignUp'
-import Login from '../Pages/LoginSignUp/Login'
+import UpdateInfo from '../Pages/UpdateInfo/UpdateInfo'
 
 export const PUBLIC_ROUTER = [
   {
@@ -9,13 +10,18 @@ export const PUBLIC_ROUTER = [
     element: <Home/>,
   },
   {
-    key: 'signUp',
-    path: '/signup',
-    element: <SignUp/>,
+    key: "add-device",
+    path: '/add-device',
+    element: <AddDevice />,
   },
   {
-    key: 'login',
-    path: '/login',
-    element: <Login />,
+    key: 'update-info',
+    path: '/update-info',
+    element: <UpdateInfo />,
+  },
+  {
+    key: 'detail',
+    path: '/detail',
+    element: <DeviceDetail />
   }
 ]

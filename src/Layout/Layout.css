@@ -53,10 +53,89 @@
   text-align: center;
 }
 
-.content {
+.sidebar-content {
   position: relative;
   z-index: 1;
   width: 100%;
   height: calc(100vh - 70px);
+  padding: 10px 0;
   overflow: auto;
+}
+
+.sidebar-content .sidebar-content-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.sidebar-content .customer-info-box {
+  height: 100%;
+  width: 30%;
+  border-radius: 10px;
+  background-color: rgb(152, 200, 239);
+}
+
+.sidebar-content .customer-info-box .customer-name-box {
+  display: flex;
+  justify-content: space-around;
+  height: 200px;
+  align-items: center;
+  border-bottom: 1px solid black;
+}
+
+.customer-info-box .customer-name-box img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+.customer-info-box .customer-name-box .customer-name h1 {
+  margin: 0;
+  padding: 0 15px 10px 15px;
+  border-bottom: 2px solid black;
+}
+
+.customer-info-box .customer-name-box .customer-name p {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.customer-info-box .customer-info {
+  padding: 20px 20px;
+}
+
+.customer-info-box .customer-info p {
+  font-size: 20px;
+}
+
+.customer-info-box .customer-info .customer-info-button {
+  display: flex;
+  justify-content: space-between;
+}
+
+.customer-info-box .customer-info .customer-info-button a {
+  text-decoration: none;
+  text-align: center;
+  width: 48%;
+  padding: 10px;
+  border-radius: 10px;
+  border-width: 0;
+  cursor: pointer;
+}
+
+.customer-info-box .customer-info .customer-info-button .add-device {
+  background-color: rgb(9, 92, 31);
+  color: white;
+}
+
+.customer-info-box .customer-info .customer-info-button .update-info {
+  background-color: rgb(245, 245, 90);
+  color: black;
+}
+
+.sidebar-content .content {
+  width: 67%;
+  height: 100%;
 }

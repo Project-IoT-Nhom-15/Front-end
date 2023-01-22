@@ -1,13 +1,18 @@
 import './Layout.css';
 import MainHeader from './MainHeader';
-// import Footer from './Footer';
+import SideBar from './SideBar';
 
 function PublicLayout(props) {
   return (
     <div className='public-layout'>
       <MainHeader />
-      <div className='content'>
-        {props.children}
+      <div className='sidebar-content'>
+        <div className='sidebar-content-wrapper'>
+          <SideBar />
+          <div className='content'>
+            {props.children}
+          </div>
+        </div>
       </div>
       {/* <Footer /> */}
     </div>

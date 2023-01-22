@@ -1,1 +1,15 @@
+.page-component {
+  width: 100%;
+  height: max-content;
+  min-height: 100%;
+  padding: 20px 0;
+  border-radius: 10px;
+  background-color: rgb(133, 234, 210);
+  overflow-y: auto;
+}
 
+.page-component .component-title {
+  text-align: center;
+  margin: 0;
+  font-size: 40px;
+}
