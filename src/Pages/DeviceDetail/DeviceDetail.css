@@ -1,5 +1,57 @@
-/* 
+/*
   - css cho file này thêm .device-detail vào trước. VD: .device-detail .example {}
 
   - Xem trang Home để hiểu thêm
 */
+
+.box-title {
+  color: rgb(209, 214, 113);
+  width: 100%;
+  margin: 0 0 0 0;
+  text-align: center;
+  font-size: 40pt;
+  font-weight: 700;
+  position: absolute;
+}
+
+.device-detail {
+  background: rgb(233, 193, 233);
+  text-align: center;
+}
+
+.box-member {
+  /* z-index: 1; */
+  position: relative;
+  width: 100%;
+  height: auto;
+  font-size: 20px;
+  margin: 30px 10%;
+  display: flex;
+}
+
+.box-member .label {
+  position: relative;
+  font-size: 18pt;
+  /* z-index: 1; */
+  height: auto;
+  margin: auto 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.input-box {
+  position: absolute;
+  display: flex;
+  width: 65%;
+  height: auto;
+  margin-left: 35%;
+  font-size: 12pt;
+  padding: 10px;
+  color: blue;
+  font-family:cursive;
+}
+
+.table-box {
+  position: relative;
+}
