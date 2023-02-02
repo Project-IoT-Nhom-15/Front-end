@@ -7,6 +7,7 @@ import Login from './Pages/LoginSignUp/Login';
 import { PUBLIC_ROUTER } from './Router/router';
 import './App.css';
 import SignUp from './Pages/LoginSignUp/SignUp';
+import ChangePassword from './Pages/LoginSignUp/ChangePassword';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path='*' element={<NotFound/>}/>
         <Route path='/login' element={<Login />}/>
         <Route path='/signup' element={<SignUp />}/>
+        <Route path='/change-password' element={<ChangePassword/>}/>
         {PUBLIC_ROUTER.map(e =>
           <Route 
             key={e.key}
