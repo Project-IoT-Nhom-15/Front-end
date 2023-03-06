@@ -1,14 +1,35 @@
-// import styled from "styled-components"
+import { useEffect, useState } from "react";
 import { Input, Button, Form } from "antd";
+import { useNavigate } from "react-router-dom";
 
 import "./LoginSignUp.css";
+import { postRequest } from "../../hooks/api";
+import ErrorMessage from "../../Component/ErrorMessage/ErrorMessage";
 
 function Login() {
+  const navigate = useNavigate();
   const [form] = Form.useForm();
+  const [ errorMessage, setErrorMesssage ] = useState(null);
 
-  const handleLogin = () => {
-    const { email, password } = form.getFieldValue();
-    console.log(email, password);
+  useEffect(() => {
+    if(localStorage.getItem('accessToken'))
+      navigate('/');
+  });
+
+  const handleLogin = async () => {
+    const { username, password } = form.getFieldValue();
+    const data = await postRequest('/login', {
+      username,
+      password
+    });
+    const error = await data.message;
+    if (error) {
+      setErrorMesssage(error);
+    }
+    else {
+      localStorage.setItem('accessToken', await data.accessToken);
+      navigate('/');
+    }
   };
 
   return (
@@ -17,14 +38,14 @@ function Login() {
       <div className="white-box-page">
         <div className="box-title">Đăng nhập</div>
         <p className="box-text">
-          Hãy nhập email và mật khẩu để đăng nhập vào tài khoản của bạn
+          Hãy nhập tên đăng nhập và mật khẩu để đăng nhập vào tài khoản của bạn
         </p>
         <Form form={form}>
           <Form.Item
-            name="email"
-            rules={[{ required: true, message: "Cần nhập email!" }]}
+            name="username"
+            rules={[{ required: true, message: "Cần nhập tên đăng nhập!" }]}
           >
-            <Input className="box-input" placeholder="Email" size="large" />
+            <Input className="box-input" placeholder="Tên đăng nhập" size="large" />
           </Form.Item>
           <Form.Item
             name="password"
@@ -54,6 +75,10 @@ function Login() {
           </a>
         </p>
       </div>
+      <ErrorMessage 
+        errorMessage={errorMessage} 
+        setErrorMesssage={setErrorMesssage}
+      />
     </>
   );
 }

@@ -1,15 +1,40 @@
+import { useEffect, useState } from "react";
 import { Button, Form, Input } from "antd";
+import { useNavigate } from "react-router-dom";
 
 import "./LoginSignUp.css";
+import { postRequest } from "../../hooks/api";
+import ErrorMessage from "../../Component/ErrorMessage/ErrorMessage";
 
 function ChangePassword() {
+  const navigate = useNavigate();
   const [form] = Form.useForm();
-  const handleChangePassword = (value) => {
+  const [ errorMessage, setErrorMesssage ] = useState(null);
+
+  useEffect(() => {
+    if(!localStorage.getItem('accessToken'))
+      navigate('/login');
+  });
+
+  const handleChangePassword = async (value) => {
     console.log({
       oldPassword: value.oldPassword,
       newPassword: value.newPassword,
       confirmPassword: value.confirmPassword
     });
+
+    const data = await postRequest('/change-password', {
+      oldPassword: value.oldPassword,
+      newPassword: value.newPassword
+    });
+    const error = await data.message;
+    if (error) {
+      setErrorMesssage(error);
+    }
+    else {
+      alert('Thành công!');
+      navigate('/');
+    }
   };
 
   return (
@@ -81,6 +106,10 @@ function ChangePassword() {
           </Form.Item>
         </Form>
       </div>
+      <ErrorMessage 
+        errorMessage={errorMessage} 
+        setErrorMesssage={setErrorMesssage}
+      />
     </>
   );
 }

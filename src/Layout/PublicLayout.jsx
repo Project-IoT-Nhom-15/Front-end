@@ -1,11 +1,10 @@
 import './Layout.css';
-import MainHeader from './MainHeader';
 import SideBar from './SideBar';
 
 function PublicLayout(props) {
   return (
     <div className='public-layout'>
-      <MainHeader />
+      {/* <MainHeader /> */}
       <div className='sidebar-content'>
         <div className='sidebar-content-wrapper'>
           <SideBar />

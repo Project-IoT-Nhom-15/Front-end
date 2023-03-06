@@ -1,74 +1,96 @@
 // css cho component này tại file UpdateInfo.css
 // Các element thêm vào trong thẻ div.update-info
 import './UpdateInfo.css';
-import { Button, Form, Input, Select } from 'antd';
+import { Button, Form, Input } from 'antd';
+import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
-const { Option } = Select;
+import { postRequest } from '../../hooks/api';
+import ErrorMessage from "../../Component/ErrorMessage/ErrorMessage";
 
 export default function UpdateInfo() {
   const [ form ] = Form.useForm();
+  const navigate = useNavigate();
+  const [ errorMessage, setErrorMesssage ] = useState(null);
 
-  const handleChange = (value) => {
+  useEffect(() => {
+    if (!localStorage.getItem('accessToken')) {
+      navigate('/');
+    }
+  }, [navigate]);
+
+  const handleChange = async (value) => {
     console.log({
       name: value.customerName,
       email: value.email,
-      phoneNumber: value.phoneNumber,
-      gender: value.gender
-    })
+      phone: value.phone
+    });
+
+    const data = await postRequest('/update-profile', {
+      name: value.customerName,
+      email: value.email,
+      phone: value.phone
+    });
+    const error = await data.message;
+    if (error) {
+      setErrorMesssage(error);
+    }
+    else {
+      alert('Thành công!');
+      navigate('/');
+    }
   }
 
   return (
-    <div className="update-info page-component">
-      <h1 className="component-title">Chỉnh sửa thông tin</h1>
-      <Form
-        className="form-change-info"
-        form={form}
-        onFinish={(value) => handleChange(value)}
-      >
-        <h2>Tên khách hàng</h2>
-        <Form.Item name="customerName" initialValue="abc">
-          <Input className="box-input" size="large" />
-        </Form.Item>
-        <h2>Email</h2>
-        <Form.Item
-          name="email"
-          initialValue="abc"
-          rules={[
-            { required: true, message: "Cần nhập email!" },
-            { type: "email", message: "Sai định dạng email" },
-          ]}
+    <>
+      <div className="update-info page-component">
+        <h1 className="component-title">Chỉnh sửa thông tin</h1>
+        <Form
+          className="form-change-info"
+          form={form}
+          onFinish={(value) => handleChange(value)}
         >
-          <Input className="box-input" size="large" />
-        </Form.Item>
-        <h2>Số điện thoại</h2>
-        <Form.Item name="phoneNumber" initialValue="abc">
-          <Input className="box-input" size="large" />
-        </Form.Item>
-        <div className='form-gender'>
-          <h2>Giới tính</h2>
-          <Form.Item name="gender">
-            <Select
-              className='form-select'
-              size="large"
-              placeholder="Nam"
-            >
-              <Option value={1}>Nam</Option>
-              <Option value={2}>Nữ</Option>
-              <Option value={3}>Khác</Option>
-            </Select>
+          <h2>Tên khách hàng</h2>
+          <Form.Item
+            name="customerName"
+            initialValue={localStorage.getItem('name')}
+          >
+            <Input className="box-input" size="large" />
           </Form.Item>
-        </div>
-        <Button 
-          className='box-button'
-          htmlType='submit'
-        >
-          Xác nhận
-        </Button>
-      </Form>
-      <p className='change-password'>
-        Bạn muốn đổi mật khẩu?&nbsp;
-        <a href='/change-password'>Đổi mật khẩu</a>
-      </p>
-    </div>
+          <h2>Email</h2>
+          <Form.Item
+            name="email"
+            initialValue={localStorage.getItem('email')}
+            rules={[
+              { required: true, message: "Cần nhập email!" },
+              { type: "email", message: "Sai định dạng email" },
+            ]}
+          >
+            <Input className="box-input" size="large" />
+          </Form.Item>
+          <h2>Số điện thoại</h2>
+          <Form.Item
+            name="phone"
+            initialValue={localStorage.getItem('phone')}
+          >
+            <Input className="box-input" size="large" />
+          </Form.Item>
+          <Button
+            className='box-button'
+            htmlType='submit'
+          >
+            Xác nhận
+          </Button>
+        </Form>
+        <p className='change-password'>
+          Bạn muốn đổi mật khẩu?&nbsp;
+          <a href='/change-password'>Đổi mật khẩu</a>
+        </p>
+      </div>
+      <ErrorMessage 
+        errorMessage={errorMessage} 
+        setErrorMesssage={setErrorMesssage}
+      />
+    </>
   );
 }

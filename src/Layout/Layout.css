@@ -6,59 +6,12 @@
   /* background: rgb(225 220 197); */
 }
 
-.header {
-  height: 30px;
-  width: 100%;
-  background: rgb(31, 30, 30);
-  display: flex;
-  align-items: center;
-  padding-left: 10px;
-  color: white;
-}
-
-.main-header {
-  position: -webkit-sticky;
-  position: sticky;
-  z-index: 1000;
-  top: 0;
-  height: 70px !important;
-  width: 100%;
-  background: linear-gradient(to bottom,rgb(247, 245, 238),rgb(241 233 215));
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.main-header img {
-  height: 50px;
-  margin-left: 30px;
-  border-radius: 50%;
-  align-items: center;
-}
-
-.main-header .search-box {
-  display: flex;
-  height: max-content;
-}
-
-.main-header .search-box .form-item {
-  margin: 0;
-}
-
-.main-header .button-option {
-  height: 50px;
-  width: 50px;
-  margin-right: 30px;
-  font-size: 21pt;
-  text-align: center;
-}
-
 .sidebar-content {
   position: relative;
   z-index: 1;
   width: 100%;
-  height: calc(100vh - 70px);
-  padding: 10px 0;
+  height: calc(100vh - 10px);
+  padding-top: 10px;
   overflow: auto;
 }
 
@@ -115,7 +68,8 @@
   justify-content: space-between;
 }
 
-.customer-info-box .customer-info .customer-info-button a {
+.customer-info-box .customer-info .customer-info-button a,
+.customer-info-box .customer-info .customer-info-button button {
   text-decoration: none;
   text-align: center;
   width: 48%;
@@ -125,8 +79,8 @@
   cursor: pointer;
 }
 
-.customer-info-box .customer-info .customer-info-button .add-device {
-  background-color: rgb(9, 92, 31);
+.customer-info-box .customer-info .customer-info-button button {
+  background-color: rgb(216, 77, 81);
   color: white;
 }
 

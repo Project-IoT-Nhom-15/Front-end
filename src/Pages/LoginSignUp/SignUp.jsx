@@ -1,19 +1,41 @@
 // import styled from "styled-components"
-import { Button, Form, Input, Select } from "antd";
+import { useEffect, useState } from "react";
+import { Button, Form, Input } from "antd";
+import { useNavigate } from "react-router-dom";
 
 import "./LoginSignUp.css";
-
-const { Option } = Select;
+import { postRequest } from "../../hooks/api";
+import ErrorMessage from "../../Component/ErrorMessage/ErrorMessage";
 
 function SignUp() {
+  const navigate = useNavigate();
   const [form] = Form.useForm();
+  const [ errorMessage, setErrorMesssage ] = useState(null);
 
-  const handleSignUp = (value) => {
-    console.log({
-      email: value.email,
-      password: value.password,
-      gender: value.gender,
+  useEffect(() => {
+    if(localStorage.getItem('accessToken'))
+      navigate('/');
+  });
+
+  const handleSignUp = async () => {
+    const { username, password, name, email, phone } = form.getFieldValue();
+    
+    let data = await postRequest('/register', {
+      username,
+      password,
+      name,
+      email,
+      phone
     });
+
+    const error = await data.message;
+    if (error) {
+      setErrorMesssage(error);
+    }
+    else {
+      alert('Đăng kí thành công');
+      navigate('/login');
+    }
   };
 
   return (
@@ -24,15 +46,14 @@ function SignUp() {
         <p className="box-text">
           Hãy điền đầy đủ thông tin để đăng ký tài khoản
         </p>
-        <Form form={form} onFinish={(value) => handleSignUp(value)}>
+        <Form form={form} onFinish={handleSignUp}>
           <Form.Item
-            name="email"
+            name="username"
             rules={[
-              { required: true, message: "Cần nhập email!" },
-              { type: "email", message: "Sai định dạng email" },
+              { required: true, message: "Cần nhập tên đăng nhập!" }
             ]}
           >
-            <Input className="box-input" placeholder="Email" size="large" />
+            <Input className="box-input" placeholder="Tên đăng nhập" size="large" />
           </Form.Item>
           <Form.Item
             name="password"
@@ -74,24 +95,38 @@ function SignUp() {
             {/* <p style={{margin: '0'}}>Abc</p> */}
           </Form.Item>
           <Form.Item
-            name="gender"
-            rules={[{ required: true, message: "Cần chọn giới tính!" }]}
+            name="email"
+            rules={[
+              { required: true, message: "Cần nhập email!" },
+              { type: "email", message: "Sai định dạng email" },
+            ]}
           >
-            <Select
-              size="large"
-              placeholder="Giới tính"
-              style={{ width: "max-content" }}
-            >
-              <Option value={1}>Nam</Option>
-              <Option value={2}>Nữ</Option>
-              <Option value={3}>Khác</Option>
-            </Select>
+            <Input className="box-input" placeholder="Email" size="large" />
+          </Form.Item>
+          <Form.Item
+            name="name"
+            rules={[
+              { required: true, message: "Cần nhập họ và tên!" },
+            ]}
+          >
+            <Input className="box-input" placeholder="Họ và tên" size="large" />
+          </Form.Item>
+          <Form.Item
+            name="phone"
+            rules={[
+              { required: true, message: "Cần nhập số điện thoại!" },
+              {
+                pattern: new RegExp(/^[0-9]*$/),
+                message: "Số điện thoại chỉ chứa số"
+              },
+            ]}
+          >
+            <Input className="box-input" placeholder="Số điện thoại" size="large" />
           </Form.Item>
           <Form.Item>
             <Button
               className="box-button"
               type="primary"
-              // onClick={handleSignUp}
               htmlType="submit"
             >
               Đăng ký
@@ -99,6 +134,10 @@ function SignUp() {
           </Form.Item>
         </Form>
       </div>
+      <ErrorMessage 
+        errorMessage={errorMessage} 
+        setErrorMesssage={setErrorMesssage}
+      />
     </>
   );
 }
