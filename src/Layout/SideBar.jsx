@@ -27,7 +27,7 @@ export default function SideBar() {
   return(
     <div className='customer-info-box'>
       <div className="customer-name-box">
-        <img src='./Image/logo.png' alt='' />
+        <img src='/Image/logo.png' alt='' />
         <div className="customer-name">
           <h1>{customerInfo.name}</h1>
           <p>ID: {customerInfo._id}</p>

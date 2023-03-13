@@ -27,32 +27,32 @@
   display: flex;
 }
 
-.device-item .switch-button {
+.switch-button {
   margin: auto;
   width: 80px;
   height: 30px;
 }
 
-.device-item .switch-button .ant-switch-handle {
+.switch-button .ant-switch-handle {
   width: 26px;
   height: 26px;
 }
 
-.device-item .switch-button.ant-switch-checked .ant-switch-handle {
+.switch-button.ant-switch-checked .ant-switch-handle {
   inset-inline-start: calc(100% - 28px) !important;
 }
 
-.device-item .switch-button.ant-switch-checked .ant-switch-inner .ant-switch-inner-checked {
+.switch-button.ant-switch-checked .ant-switch-inner .ant-switch-inner-checked {
   /* margin-inline-start: 0; */
   margin-inline-end: 28px;
 }
 
-.device-item .switch-button .ant-switch-handle::before {
+.switch-button .ant-switch-handle::before {
   border-radius: 50%;
 }
 
-.device-item .switch-button .ant-switch-inner .ant-switch-inner-unchecked,
-.device-item .switch-button .ant-switch-inner .ant-switch-inner-checked {
+.switch-button .ant-switch-inner .ant-switch-inner-unchecked,
+.switch-button .ant-switch-inner .ant-switch-inner-checked {
   font-size: 20px !important;
   padding-top: 2px;
 }
